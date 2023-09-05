@@ -1,6 +1,6 @@
 .git
+.gitignore
 .dockerignore
-Dockerfile*
-container.config.json
 LICENSE
-README.md
+*.md
+node_modules
