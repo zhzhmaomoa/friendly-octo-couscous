@@ -1,9 +1,9 @@
-require('dotenv').config()
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+import 'dotenv/config'
+import path from "path";
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import { init as initDB, Counter } from "./db.js";
 
 const logger = morgan("tiny");
 
@@ -66,8 +66,8 @@ app.use((req,res,next)=>{
     })
   })
 })
-const membersHandler = require('./handler/membersHandler')
-app.use("/api/members",membersHandler);
+// import membersHandler from "./handler/membersHandler"
+// app.use("/api/members",membersHandler);
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
