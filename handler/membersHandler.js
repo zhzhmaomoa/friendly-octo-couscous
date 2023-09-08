@@ -1,11 +1,14 @@
-const express = require('express');
+import express from "express"
+import {Member} from "../db.js"
 const router = express.Router();
-router.get((req,res)=>{
-    res.succ('aaa')
+router.get("/",async(req,res)=>{
+    const result  =await Member.findAll({
+        attributes: ['name','createdAt','updatedAt']
+    });
+    res.succ(result);
 })
-router.post((req,res)=>{
-    const {name}  = req.body
-    console.log(req.body);
-    res.succ();
+router.post("/",async (req,res)=>{
+    const result = await Member.create(req.body)
+    res.succ(result);
 })
-module.exports = router;
+export default router;

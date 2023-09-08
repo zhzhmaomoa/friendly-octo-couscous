@@ -51,23 +51,24 @@ app.get("/api/wx_openid", async (req, res) => {
 });
 //统一数据返回格式
 app.use((req,res,next)=>{
-  res.succ((data,message='成功')=>{
+  res.succ = ((data='',message='成功')=>{
     res.send({
       code:0,
       message,
       data
     })
   });
-  res.fail((err,message="失败")=>{
+  res.fail = ((err='',message="失败")=>{
     res.send({
       code:1,
       message,
       err
     })
-  })
+  });
+  next();
 })
-// import membersHandler from "./handler/membersHandler"
-// app.use("/api/members",membersHandler);
+import membersHandler from "./handler/membersHandler.js"
+app.use("/api/members",membersHandler);
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
