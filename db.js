@@ -30,8 +30,32 @@ export const Member = sequelize.define("Member",{
     allowNull:false
   }
 })
+export const Contribution = sequelize.define(
+  "Contribution",
+  {
+    id:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      primaryKey:true,
+      autoIncrement:true
+    },
+    nameId:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    time:{
+      type:DataTypes.DATE,
+      allowNull:false
+    },
+    quantity:{
+      type:DataTypes.INTEGER,
+      allowNull:false
+    }
+  }
+)
 // 数据库初始化方法
 export async function init() {
   await Counter.sync({ alter: true });
   await Member.sync();
+  await Contribution.sync();
 }

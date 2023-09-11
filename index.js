@@ -69,6 +69,8 @@ app.use((req,res,next)=>{
 })
 import membersHandler from "./handler/membersHandler.js"
 app.use("/api/members",membersHandler);
+import contributionsHander from "./handler/contributionsHander.js";
+app.use("/api/contributions",contributionsHander);
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
