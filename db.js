@@ -39,12 +39,8 @@ export const Contribution = sequelize.define(
       primaryKey:true,
       autoIncrement:true
     },
-    nameId:{
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     time:{
-      type:DataTypes.DATE,
+      type:DataTypes.DATEONLY,
       allowNull:false
     },
     quantity:{
@@ -53,9 +49,11 @@ export const Contribution = sequelize.define(
     }
   }
 )
+Member.hasMany(Contribution);
+Contribution.belongsTo(Member);
 // 数据库初始化方法
 export async function init() {
   await Counter.sync({ alter: true });
-  await Member.sync();
-  await Contribution.sync();
+  await Member.sync({ alter: true });
+  await Contribution.sync({ alter: true });
 }
