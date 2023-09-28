@@ -1,5 +1,5 @@
 import express from "express"
-import {Member} from "../db.js"
+import {Member,Contribution} from "../db.js"
 const router = express.Router();
 router.get("/",async(req,res)=>{
     const result  =await Member.findAll({
@@ -21,9 +21,22 @@ router.put("/",async (req,res)=>{
     res.succ(result);
 })
 router.delete("/",async (req,res)=>{
-    const result = await Member.destroy({
-        where:req.body
-    })
-    res.succ(result);
+    try {
+        const {id} = req.body
+        await Contribution.destroy({
+            where:{
+                MemberId:id
+            }
+        })
+        await Member.destroy({
+            where:{
+                id
+            }
+        })
+        res.succ();
+    } catch (error) {
+        res.fail(error);
+    }
+
 })
 export default router;
