@@ -79,7 +79,7 @@ router.get("/",async (req,res)=>{
         let series = [];  
         result.forEach((item)=>{
            if(!categories.includes(item.time)){
-            categories.push(item.time)
+            categories.push(item.time.slice(0,8))
            }
            const seriesIndex = series.findIndex((seriesItem)=>{
             return seriesItem.name === item.Member.name
