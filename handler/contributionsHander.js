@@ -73,7 +73,7 @@ router.get("/",async (req,res)=>{
                 model:Member,
                 attributes:['id','name']
             },
-            order:[['time','DESC']]
+            order:[['time','ASC']]
         })
         let categories = []
         let series = [];  
