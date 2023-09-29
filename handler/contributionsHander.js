@@ -74,8 +74,8 @@ router.get("/",async (req,res)=>{
                 attributes:['id','name']
             },
             order:[['time','ASC']]
-        })
-        let categories = []
+        });
+        let categories = [];
         let series = [];  
         result.forEach((item)=>{
             const time = item.time.slice(0,7);
@@ -88,7 +88,7 @@ router.get("/",async (req,res)=>{
            if(seriesIndex === -1){
             series.push({
                 name:item.Member.name,
-                data:[item.quantity]
+                data:[...Array(categories.length-1).fill(null),item.quantity]
             })
            }else{
             series[seriesIndex].data.push(item.quantity);
