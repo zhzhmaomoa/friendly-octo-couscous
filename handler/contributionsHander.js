@@ -88,6 +88,7 @@ router.get("/",async (req,res)=>{
            if(seriesIndex === -1){
             series.push({
                 name:item.Member.name,
+                pointShape:'none',
                 data:[...Array(categories.length-1).fill(null),item.quantity]
             })
            }else{
