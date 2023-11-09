@@ -67,9 +67,34 @@ export const Contribution = sequelize.define(
 )
 Member.hasMany(Contribution);
 Contribution.belongsTo(Member);
+export const Memory = sequelize.define(
+  "Memory",
+  {
+    id:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      primaryKey:true,
+      autoIncrement:true
+    },
+    date:{
+      type:DataTypes.DATEONLY,
+      allowNull:false
+    },
+    title:{
+      type:DataTypes.STRING,
+      allowNull:false,
+    },
+    src:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      comment:'资源路径'
+    }
+  }
+)
 // 数据库初始化方法
 export async function init() {
   await Counter.sync({ alter: true });
   await Member.sync({ alter: true });
   await Contribution.sync({ alter: true });
+  await Memory.sync({alter:true});
 }

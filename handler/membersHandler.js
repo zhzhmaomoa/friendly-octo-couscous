@@ -212,7 +212,29 @@ const router = express.Router();
 //                 22.17
 //             ]
 //         };
+//         const iconPaths = [
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/Pistachios.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/avocado.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/bergamot.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/bread.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/cakes.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/cashews.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/cookie.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/donuts.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/egg_yolk_pastry.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/hot_dogs.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/lollipop.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/macarons.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/pizza.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/popcorn.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/potato_chips.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/pudding.png",
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/strawberries.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/sushi.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/sweet_potatoes.png", 
+//             "cloud://prod-3gjyztj8d29852c2.7072-prod-3gjyztj8d29852c2-1320649378/map-markers-icon/taco.png"];
 //         let count = 0;
+//         let iconIndex = 0;
 //         for (const key in object) {
 //             if (Object.hasOwnProperty.call(object, key)) {
 //                 const element = object[key];
@@ -220,20 +242,23 @@ const router = express.Router();
 //                 if(count > 39){
 //                     break;
 //                 }else{
-//                     await Member.update({latitude:element[1],longitude:element[0]},{
+//                     await Member.update({latitude:element[1],longitude:element[0],iconPath:iconPaths[iconIndex]},{
 //                         where:{
 //                             id:ids[count].id
 //                         }
 //                     })
 //                 }
 //                 count++;
+//                 iconIndex++;
+//                 if(iconIndex===iconPaths.length){
+//                     iconIndex = 0;
+//                 }
 //             }
 //         }
 //         res.succ('');
 //     } catch (error) {
 //         res.fail(error);
 //     }
-
 // })
 router.get("/",async(req,res)=>{
     const result  =await Member.findAll({
