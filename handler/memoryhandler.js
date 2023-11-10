@@ -13,9 +13,9 @@ router.post("/",async (req,res)=>{
 })
 router.put("/",async (req,res)=>{
     try {
-        const {id,src,date,title} = req.body;
+        const {id,date,title} = req.body;
         // console.log(req.body);
-        await Memory.update({src,date,title},{
+        await Memory.update({date,title},{
             where:{
                 id
             }
@@ -43,6 +43,20 @@ router.delete("/",async (req,res)=>{
 router.get("/",async (req,res)=>{
     try{
         const result = await Memory.findAll({attributes:['id','src','date','title']});
+        res.succ(result);
+    }catch(error){
+        res.fail(error)
+    }
+})
+router.get("/latest",async (req,res)=>{
+    try{
+        const result = await Memory.findAll(
+            {
+                attributes:['src','date','title'],
+                order:[['date','DESC']],
+                limit:10
+            }
+        );
         res.succ(result);
     }catch(error){
         res.fail(error)
