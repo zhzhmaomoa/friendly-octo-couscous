@@ -3,8 +3,11 @@ import path from "path";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { init as initDB, Counter } from "./db.js";
+import { init as initDB } from "./db.js";
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const logger = morgan("tiny");
 
 const app = express();
@@ -18,37 +21,6 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// 更新计数
-app.post("/api/count", async (req, res) => {
-  const { action } = req.body;
-  if (action === "inc") {
-    await Counter.create();
-  } else if (action === "clear") {
-    await Counter.destroy({
-      truncate: true,
-    });
-  }
-  res.send({
-    code: 0,
-    data: await Counter.count(),
-  });
-});
-
-// 获取计数
-app.get("/api/count", async (req, res) => {
-  const result = await Counter.count();
-  res.send({
-    code: 0,
-    data: result,
-  });
-});
-
-// 小程序调用，获取微信 Open ID
-app.get("/api/wx_openid", async (req, res) => {
-  if (req.headers["x-wx-source"]) {
-    res.send(req.headers["x-wx-openid"]);
-  }
-});
 //统一数据返回格式
 app.use((req,res,next)=>{
   res.succ = ((data='',message='成功')=>{
@@ -67,11 +39,11 @@ app.use((req,res,next)=>{
   });
   next();
 })
-import membersHandler from "./handler/membersHandler.js"
+import membersHandler from "./handler/membersHandler.js";
 app.use("/api/members",membersHandler);
 import contributionsHandler from "./handler/contributionsHandler.js";
 app.use("/api/contributions",contributionsHandler);
-import memoryHandler from "./handler/memoryHandler.js"
+import memoryHandler from "./handler/memoryHandler.js";
 app.use("/api/memory",memoryHandler);
 const port = process.env.PORT || 80;
 
