@@ -54,7 +54,7 @@ router.get("/latest",async (req,res)=>{
             {
                 attributes:['src','date','title'],
                 order:[['date','DESC']],
-                limit:10
+                limit:50
             }
         );
         res.succ(result);
