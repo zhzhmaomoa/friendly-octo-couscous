@@ -1,5 +1,5 @@
 import express from "express"
-import {Memory} from "../db.js";
+import {Memory} from "../model/memory.js";
 const router = express.Router();
 router.post("/",async (req,res)=>{
     // console.log(req.body);
@@ -54,7 +54,7 @@ router.get("/latest",async (req,res)=>{
             {
                 attributes:['src','date','title'],
                 order:[['date','DESC']],
-                limit:50
+                limit:6
             }
         );
         res.succ(result);

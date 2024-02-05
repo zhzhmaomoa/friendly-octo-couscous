@@ -1,5 +1,6 @@
 import express from "express";
-import { Contribution,Member } from "../db.js";
+import { Contribution }  from "../model/contribution.js";
+import { Member }  from "../model/member.js";
 const router = express.Router();
 router.post("/",async (req,res)=>{
     // console.log(req.body);

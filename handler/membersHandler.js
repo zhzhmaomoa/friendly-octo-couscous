@@ -1,5 +1,6 @@
 import express from "express"
-import {Member,Contribution} from "../db.js"
+import { Contribution }  from "../model/contribution.js";
+import { Member }  from "../model/member.js";
 const router = express.Router();
 router.get("/",async(req,res)=>{
     try {

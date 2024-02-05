@@ -3,9 +3,8 @@ import path from "path";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { init as initDB } from "./db.js";
+import { init as initDB } from "./model/initDb.js";
 import { fileURLToPath } from 'url';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const logger = morgan("tiny");
@@ -25,14 +24,14 @@ app.get("/", async (req, res) => {
 app.use((req,res,next)=>{
   res.succ = ((data='',message='成功')=>{
     res.send({
-      code:0,
+      code:200,
       message,
       data
     })
   });
   res.fail = ((err='',message="失败")=>{
     res.send({
-      code:1,
+      code:500,
       message,
       err
     })
