@@ -41,8 +41,8 @@ import contributionsHandler from "./handler/contributionsHandler.js";
 app.use("/api/contributions",contributionsHandler);
 import memHandler from "./handler/memHandler.js";
 app.use("/api/memory",memHandler);
-//import redemptionCodeHandler from "./handler/redemptionCodeHandler.js"
-//app.use("/api/redemptionCode",redemptionCodeHandler);
+import redemptionCodeHandler from "./handler/redemptionCodeHandler.js"
+app.use("/api/redemptionCode",redemptionCodeHandler);
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
