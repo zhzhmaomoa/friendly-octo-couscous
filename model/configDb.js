@@ -4,5 +4,5 @@ const [host, port] = MYSQL_ADDRESS.split(":");
 export const sequelize = new Sequelize("aobiApplet", MYSQL_USERNAME, MYSQL_PASSWORD, {
   host,
   port,
-  dialect: "mysql"
+  dialect: "mysql",
 });

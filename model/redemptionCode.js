@@ -1,5 +1,6 @@
 import {DataTypes} from "sequelize";
 import {sequelize} from "./configDb.js"
+import moment from "moment";
 export const RedemptionCode = sequelize.define("RedemptionCode",{
 	id:{
 		type:DataTypes.INTEGER,
@@ -13,7 +14,10 @@ export const RedemptionCode = sequelize.define("RedemptionCode",{
 	},
 	deadline:{ 
 		type:DataTypes.DATE,
-		allowNull:false
+		allowNull:false,
+		get(){
+			return moment(this.getDataValue('deadline')).format('YYYY-MM-DDThh:mm:ss');
+		}
 	},
 	purpleClothingEasterEgg:{
 		type:DataTypes.INTEGER,
@@ -56,24 +60,19 @@ export const RedemptionCode = sequelize.define("RedemptionCode",{
                 allowNull:false
         },
         furniture:{
-                type:DataTypes.INTEGER,
-                allowNull:false
+                type:DataTypes.STRING,
         },
         clothing:{
-                type:DataTypes.INTEGER,
-                allowNull:false
+                type:DataTypes.STRING
         },
         action:{
-                type:DataTypes.INTEGER,
-                allowNull:false
+                type:DataTypes.STRING
         },
         house:{
-                type:DataTypes.INTEGER,
-                allowNull:false
+                type:DataTypes.STRING,
         },
         appellation:{
-                type:DataTypes.INTEGER,
-                allowNull:false
+                type:DataTypes.STRING,
         },
         potion:{
                 type:DataTypes.INTEGER,
