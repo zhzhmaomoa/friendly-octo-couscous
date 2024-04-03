@@ -12,15 +12,9 @@ export const Member = sequelize.define("Member",{
     allowNull:false,
     comment:'族员名字'
   },
-  latitude:{
-    type:DataTypes.FLOAT,
-    allowNull:false,
-    comment:'纬度'
-  },
-  longitude:{
-    type:DataTypes.FLOAT,
-    allowNull:false,
-    comment:'经度'
+  province:{
+	type:DataTypes.STRING,
+	allowNull:false,
   },
   iconPath:{
     type:DataTypes.STRING,

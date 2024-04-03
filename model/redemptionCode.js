@@ -8,6 +8,11 @@ export const RedemptionCode = sequelize.define("RedemptionCode",{
 		primaryKey:true,
 		autoIncrement:true
 	},
+	type:{
+		type:DataTypes.STRING,
+		allowNull:false,
+		comment:'redemptionCode/codedMessage',
+	},
 	redemptionCode:{
 		type:DataTypes.STRING,
 		allowNull:false,
@@ -16,7 +21,7 @@ export const RedemptionCode = sequelize.define("RedemptionCode",{
 		type:DataTypes.DATE,
 		allowNull:false,
 		get(){
-			return moment(this.getDataValue('deadline')).format('YYYY-MM-DDThh:mm:ss');
+			return moment(this.getDataValue('deadline')).format('YYYY-MM-DDTkk:mm:ss');
 		}
 	},
 	purpleClothingEasterEgg:{
@@ -77,5 +82,21 @@ export const RedemptionCode = sequelize.define("RedemptionCode",{
         potion:{
                 type:DataTypes.INTEGER,
                 allowNull:false
-        }
+        },
+	petWhistle:{
+		type:DataTypes.INTEGER,
+		allowNull:false
+	},
+	circulationPass:{
+		type:DataTypes.INTEGER,
+		allowNull:false
+	},
+	chronoTrigger:{
+		type:DataTypes.INTEGER,
+		allowNull:false
+	},
+	points:{
+		type:DataTypes.INTEGER,
+		allowNull:false
+	}
 })
