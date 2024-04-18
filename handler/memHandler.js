@@ -75,7 +75,8 @@ router.get("/",async (req,res)=>{
 			limit:Number(pageSize)
 		});
 	result.forEach((ele,i)=>{
-		result[i].src= process.env.IP+":"+process.env.PORT+"/memory/"+ele.src;
+		//result[i].src= process.env.IP+":"+process.env.PORT+"/memory/"+ele.src;
+		result[i].src= process.env.UPLOAD_ADDRESS+"/memory/"+ele.src;
 	});
         res.succ(result);
     }catch(error){

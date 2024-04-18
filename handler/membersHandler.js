@@ -26,7 +26,8 @@ router.get("/",async(req,res)=>{
 			limit:Number(pageSize)
 		});
 		result.forEach((ele,i)=>{
-          	      result[i].iconPath= process.env.IP+":"+process.env.PORT+"/memberImg/"+ele.iconPath;
+          	      //result[i].iconPath= process.env.IP+":"+process.env.PORT+"/memberImg/"+ele.iconPath;
+          	      result[i].iconPath= process.env.UPLOAD_ADDRESS+"/memberImg/"+ele.iconPath;
         	});
 		res.succ(result);
 	} catch (error) {
