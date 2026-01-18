@@ -123,8 +123,8 @@ router.get("/",async (req,res)=>{
         const {pageSize,pageNum} = ZPageConfig.parse(req.query);
         const oldDirectory = await getDirectory();
         const startIndex =(pageNum-1)*pageSize
-        const newDirectory = oldDirectory.slice(startIndex,startIndex+pageSize)
-            .sort((a,b)=>(a.index-b.index))
+        const newDirectory = oldDirectory.sort((a,b)=>(b.index-a.index))
+            .slice(startIndex,startIndex+pageSize)
             .map(i=>({
                     ...i,
                     src:MEMORY_ADDRESS+i.src
