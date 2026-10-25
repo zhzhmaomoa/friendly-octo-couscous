@@ -61,8 +61,6 @@ router.post("/",upload.single('iconPath'),async (req,res)=>{
 router.put("/",upload.single('iconPath'),async (req,res)=>{
 	try {
         const file = req.file;
-		console.log(req.file);
-		console.log(req.body)
 		const newMember:MemberType = ZMember.parse({
 			...req.body,
 			iconPath:""

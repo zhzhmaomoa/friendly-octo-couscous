@@ -16,6 +16,8 @@ import memHandler from "./handler/memory.js";
 app.use("/api/memory",memHandler);
 import membersHandler from "./handler/members.js";
 app.use("/api/members",membersHandler);
+import foodRateHandler from "./handler/foodRate.js";
+app.use("/api/foodRate",foodRateHandler);
 app.listen(PORT, () => {
   console.log("启动成功", PORT);
 });
